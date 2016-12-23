@@ -21,6 +21,8 @@ def get_ip(uid, log, fin_date):
         time_start = 0
         time_end = 0
         for line in lines:
+            if line.find(uid) == -1:
+                continue
             if not found_start:
                 match_start = re.match(re_start, line)
                 if match_start:
@@ -122,6 +124,8 @@ def is_cache_update_success(uid, log, pay_date):
         score_before = 0
         score_sitdown = 0
         for line in lines:
+            if line.find(uid) == -1:
+                continue
             if not found_start:
                 match_start = re.match(re_start, line)
                 if match_start:
@@ -199,15 +203,17 @@ def query_score(uid, date, shooter_path):
     print("query score end >>>>>>>>.")
 
 if __name__ == '__main__':
+    t1 = time.time()
     if len(sys.argv) < 3:
         print("usage: python query_log.py [uid] [time] [shooter_path]")
         # query_ip("7117420", "2016-12-22 03:03:00") # HTTP test
-        # query_ip("3094022", "2016-12-22 03:02:34")
+        query_ip("3094022", "2016-12-22 03:02:34")
         # query_score("3094022", "2016-12-22 03:02:34", "./")
     elif len(sys.argv) == 3:
         query_ip(sys.argv[1], sys.argv[2])
     else:
         query_score(sys.argv[1], sys.argv[2], sys.argv[3])
+    print("cost time: " + str(time.time() - t1))
 
 
 
