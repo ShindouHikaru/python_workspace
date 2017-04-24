@@ -39,7 +39,8 @@ ROBOTSTXT_OBEY = False
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-HEADERS = {
+# DEFAULT_REQUEST_HEADERS
+DEFAULT_REQUEST_HEADERS = {
   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
   'Accept-Language': 'en',
   'User-Agent':'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36',
@@ -68,6 +69,8 @@ HEADERS = {
 ITEM_PIPELINES = {
    'manga.pipelines.MangaPipeline': 300,
 }
+# LOG_LEVEL = 'DEBUG'
+# LOG_FILE = "manga.log"
 # ITEM_PIPELINES = {'scrapy.pipelines.images.MyImagesPipeline': 1}
 IMAGES_STORE = "/Users/fyxtc/work/py3_workspace/manga_download"
 
