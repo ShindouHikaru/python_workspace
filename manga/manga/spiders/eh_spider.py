@@ -7,7 +7,7 @@ from manga.items import MangaItem
 class EhSpider(scrapy.Spider):
     name = "eh"
     xpath = {
-        "urls": ["https://e-hentai.org/g/1052044/71cffc9098/"],
+        "urls": ["https://e-hentai.org/g/1023532/5b0bd37fda/"],
         "image_page": "//div[@class='gdtm']/div/a/@href", 
         "next_page": "//div[@class='gtb']/table/tr/td[last()]/a/@href", 
         "image": "//img[@id='img']/@src"

@@ -11,6 +11,7 @@ from scrapy.pipelines.images import ImagesPipeline
 from scrapy.exceptions import DropItem
 import os
 import manga.settings
+import logging
 
 class MangaPipeline(ImagesPipeline):
 
@@ -35,7 +36,7 @@ class MangaPipeline(ImagesPipeline):
 
         target_name = os.path.join(target_dir, os.path.basename(urls[0]))  
         # 如果指定了--logfile或者配置了LOG_FILE，那么所有日志都会写到文件，屏幕上只会留下print，也许这才是我想要的，不然太烦了。。。
-        print("finished " + target_name)
+        logging.info("finished " + target_name)
         os.rename(old_name, target_name)
         return item
 

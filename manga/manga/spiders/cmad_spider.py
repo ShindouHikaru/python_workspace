@@ -7,7 +7,7 @@ from manga.items import MangaItem
 class CmadSpider(scrapy.Spider):
     name = "cmad"
     xpath = {
-        "urls": ["http://www.cartoonmad.com/comic/1079.html"],
+        "urls": ["http://www.cartoonmad.com/comic/1217.html"],
         "chapter": "//a[contains(., '話')]/@href",  # 默认下载话
         "image_page": "//option[contains(., '頁')]/@value",  
         "image": "//img[contains(@src, 'cartoonmad.com')]/@src",
@@ -20,6 +20,8 @@ class CmadSpider(scrapy.Spider):
 
     def parse(self, response):
         srcs = response.xpath(self.xpath.get("chapter")).extract()
+        # hikaru test
+        # srcs = ["http://www.cartoonmad.com/comic/109000211098001.html", "http://www.cartoonmad.com/comic/109000221097001.html", "http://www.cartoonmad.com/comic/109000231095001.html"]
         srcs = [response.urljoin(x) for x in srcs]
         for src in srcs:
             yield scrapy.Request(url=src, callback=self.parse_chapter)
