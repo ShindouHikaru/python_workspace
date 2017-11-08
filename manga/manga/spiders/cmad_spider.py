@@ -2,6 +2,7 @@ import scrapy
 from manga.settings import *
 import sys
 import logging
+import re
 from manga.items import MangaItem
 
 class CmadSpider(scrapy.Spider):
@@ -11,6 +12,7 @@ class CmadSpider(scrapy.Spider):
         "chapter": "//a[contains(., '話')]/@href",  # 默认下载话
         "image_page": "//option[contains(., '頁')]/@value",  
         "image": "//img[contains(@src, 'cartoonmad.com')]/@src",
+        "start_index": "73",
     }
 
     def start_requests(self):
@@ -19,6 +21,7 @@ class CmadSpider(scrapy.Spider):
             yield scrapy.Request(url=url, callback=self.parse)
 
     def parse(self, response):
+        start_index = int(self.xpath.get("start_index"))
         srcs = response.xpath(self.xpath.get("chapter")).extract()
         # hikaru test
         # srcs = ["http://www.cartoonmad.com/comic/109000211098001.html", "http://www.cartoonmad.com/comic/109000221097001.html", "http://www.cartoonmad.com/comic/109000231095001.html"]
